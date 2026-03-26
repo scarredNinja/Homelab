@@ -1,0 +1,18 @@
+# Logs
+*.log
+logs/
+
+# VM registry (contains IPs/MACs — may be sensitive)
+vm-registry/*.json
+
+# Swarm tokens (sensitive)
+swarm-state/
+
+# Downloaded images (large, reproducible)
+*.img
+*.qcow2
+
+# Editor temporaries
+*.swp
+*~
+.DS_Store

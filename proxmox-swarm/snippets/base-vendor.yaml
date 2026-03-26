@@ -1,0 +1,23 @@
+#cloud-config
+# base-vendor.yaml — Proxmox vendor cloud-init snippet
+#
+# Intentionally minimal: install only what post-boot scripts need.
+# Docker, swarm join, NFS mounts are all handled by 03-post-boot.sh
+# for proper error handling and re-runnability.
+#
+# This file is deployed to /var/lib/vz/snippets/base-vendor.yaml on the
+# Proxmox host by 01-create-template.sh and referenced via:
+#   qm set <vmid> --cicustom "vendor=local:snippets/base-vendor.yaml"
+
+package_update: true
+package_upgrade: false
+
+packages:
+  - qemu-guest-agent
+  - nfs-common
+  - curl
+  - fuse-overlayfs
+  - jq
+
+runcmd:
+  - systemctl enable --now qemu-guest-agent
